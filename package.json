@@ -1,26 +1,25 @@
 {
-  "name": "softonix-guidelines-vite",
+  "name": "full-stack-crash-course",
   "version": "2.1.0",
   "type": "module",
   "scripts": {
-    "dev-only": "vite --host",
-    "dev": "run-s dev-only",
+    "dev": "run-p openapi-generate && vite --host",
     "build-only": "vite build",
     "build": "run-s type-check build-only",
     "preview": "vite preview",
     "type-check": "vue-tsc --build",
     "lint": "eslint . --fix",
-    "openapi-generate": "npx openapi-typescript https://fakerestapi.azurewebsites.net/swagger/v1/swagger.json -o ./src/api/types/schema.d.ts",
+    "openapi-generate": "npx openapi-typescript@6.7.6 http://127.0.0.1:3030/api/documentation/json -o ./src/api/types/schema.d.ts --header 'Authorization: Basic c3dhZ2dlcnVzZXI6c3dhZ2dlcnBhc3N3b3Jk' --enum",
     "postinstall": "run-p openapi-generate"
   },
   "dependencies": {
     "@vueuse/core": "^12.3.0",
     "axios": "^1.7.9",
+    "dayjs": "^1.11.13",
     "element-plus": "^2.9.2",
     "pinia": "^2.3.0",
     "portal-vue": "^3.0.0",
     "vue": "^3.5.13",
-    "vue-i18n": "^11.0.1",
     "vue-router": "^4.5.0"
   },
   "devDependencies": {
@@ -34,6 +33,7 @@
     "eslint": "^9.17.0",
     "eslint-plugin-vue": "^9.32.0",
     "npm-run-all2": "^7.0.2",
+    "openapi-typescript": "^6.7.6",
     "pathe": "^1.1.2",
     "postcss": "^8.4.49",
     "rollup-plugin-visualizer": "^5.14.0",

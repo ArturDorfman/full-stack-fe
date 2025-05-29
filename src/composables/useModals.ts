@@ -1,5 +1,5 @@
 const Components = {
-  TestModal: () => defineAsyncComponent(() => import('@/components/TestModal.vue'))
+  PostModal: () => defineAsyncComponent(() => import('@/components/posts/PostModal.vue'))
 }
 
 type TComponentsType = typeof Components

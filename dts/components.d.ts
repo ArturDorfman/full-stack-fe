@@ -7,13 +7,32 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    AddPostModal: typeof import('../src/components/posts/PostModal.vue')['default']
+    AppModal: typeof import('./../src/components/AppModal.vue')['default']
+    CommentItem: typeof import('./../src/components/posts/CommentItem.vue')['default']
+    CommentsList: typeof import('./../src/components/comments/CommentsList.vue')['default']
     Compute: typeof import('./../src/components/Compute.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
+    ElCard: typeof import('element-plus/es')['ElCard']
     ElConfigProvider: typeof import('element-plus/es')['ElConfigProvider']
     ElDialog: typeof import('element-plus/es')['ElDialog']
+    ElForm: typeof import('element-plus/es')['ElForm']
+    ElFormItem: typeof import('element-plus/es')['ElFormItem']
+    ElHeader: typeof import('element-plus/es')['ElHeader']
+    ElIcon: typeof import('element-plus/es')['ElIcon']
+    ElInput: typeof import('element-plus/es')['ElInput']
+    ElMain: typeof import('element-plus/es')['ElMain']
+    ElSkeleton: typeof import('element-plus/es')['ElSkeleton']
+    ElTag: typeof import('element-plus/es')['ElTag']
     Modals: typeof import('./../src/components/Modals.vue')['default']
+    PostCard: typeof import('./../src/components/posts/PostCard.vue')['default']
+    PostModal: typeof import('./../src/components/posts/PostModal.vue')['default']
+    PostsList: typeof import('./../src/components/posts/PostsList.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     TestModal: typeof import('./../src/components/TestModal.vue')['default']
+  }
+  export interface ComponentCustomProperties {
+    vLoading: typeof import('element-plus/es')['ElLoadingDirective']
   }
 }

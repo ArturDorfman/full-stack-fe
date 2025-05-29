@@ -4,7 +4,8 @@
     :is="modal.component"
     v-for="[name, modal] in modals.entries()"
     :key="name"
-    append-to-body
+    v-model="modal.isOpen"
+    appendToBody
   />
 </template>
 

@@ -8,7 +8,7 @@ Besides this, we also propose a list of frontend best practices which we must fo
 ### Prerequisition
 - Familiarity with the command line
 - Install Node.js version 16.0 or higher
-- Create .env file in the project root and place VITE_API_URL=https://jsonplaceholder.typicode.com there.
+- Create .env file in the project root and place API_URL=https://jsonplaceholder.typicode.com there.
 
 ### Vue project structure
 
