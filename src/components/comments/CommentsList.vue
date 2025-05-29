@@ -1,7 +1,7 @@
 <template>
   <div class="mt-3 space-y-4">
     <div
-      v-for="comment in commentsStore.comments"
+      v-for="comment in comments"
       :key="comment.id"
       class="p-3 bg-gray-50 rounded-lg mb-3 hover:shadow-md transition-shadow duration-200"
     >
@@ -84,6 +84,8 @@ const commentsStore = useCommentsStore()
 
 const editingCommentId = ref<string | null>(null)
 const editedCommentText = ref('')
+
+const comments = computed(() => commentsStore.comments.get(props.post.id) || [])
 
 function editComment (comment: TComment) {
   editingCommentId.value = comment.id

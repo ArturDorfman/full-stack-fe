@@ -87,9 +87,7 @@ const commentCount = ref(props.post.commentsCount)
 function toggleComments () {
   isCommentsVisible.value = !isCommentsVisible.value
 
-  if (!commentsStore.comments.length) {
-    commentsStore.getComments(props.post.id)
-  }
+  commentsStore.getComments(props.post.id)
 }
 
 function addComment () {
