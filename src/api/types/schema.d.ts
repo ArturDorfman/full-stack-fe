@@ -82,6 +82,7 @@ export interface paths {
         query?: {
           limit?: number;
           offset?: number;
+          search?: string;
         };
       };
       responses: {
@@ -105,7 +106,6 @@ export interface paths {
                 limit: number;
                 offset: number;
                 page: number;
-                totalPages: number;
               };
             };
           };

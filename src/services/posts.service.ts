@@ -3,7 +3,7 @@ class PostsService {
     return useApiClient.post('/api/posts/', payload)
   }
 
-  getPosts (params: { limit: number; offset: number }) {
+  getPosts (params: TGetPostsQuery) {
     return useApiClient.get('/api/posts/', { params })
   }
 
