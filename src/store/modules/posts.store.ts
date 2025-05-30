@@ -2,7 +2,14 @@ import { postsService } from '@/services/posts.service'
 
 export const usePostsStore = defineStore('postsStore', () => {
   const posts = ref<TPost[]>([])
-  const meta = ref<TPostsMeta>({ total: 0, limit: 0, offset: 0, page: 0 })
+  const meta = ref<TPostsMeta>({
+    total: 0,
+    limit: 0,
+    offset: 0,
+    page: 0,
+    sortBy: 'createdAt',
+    sortDirection: 'desc'
+  })
 
   async function getPosts (params: TGetPostsQuery) {
     const data = await postsService.getPosts(params)

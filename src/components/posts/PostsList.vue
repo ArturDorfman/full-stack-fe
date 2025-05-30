@@ -17,11 +17,10 @@
           </el-button>
         </div>
 
-        <div class="w-full">
+        <div class="flex gap-3">
           <el-input
             v-model="searchQuery"
             placeholder="Search posts..."
-            class="w-full"
             clearable
             @clear="handleClearSearch"
           >
@@ -29,6 +28,27 @@
               <el-icon><Search /></el-icon>
             </template>
           </el-input>
+
+          <el-select
+            v-model="sortBy"
+            placeholder="Sort by"
+            class="w-1/4"
+            @change="handleSortChange"
+          >
+            <el-option label="Title" value="title" />
+            <el-option label="Created at" value="createdAt" />
+            <el-option label="Comments count" value="commentsCount" />
+          </el-select>
+
+          <el-select
+            v-model="sortDirection"
+            placeholder="Order"
+            class="w-1/4"
+            @change="handleSortChange"
+          >
+            <el-option label="Ascending (A-Z)" value="asc" />
+            <el-option label="Descending (Z-A)" value="desc" />
+          </el-select>
         </div>
       </div>
 
@@ -79,12 +99,18 @@ const postsStore = usePostsStore()
 const POSTS_LIMIT = 4
 const loading = ref(false)
 const searchQuery = ref('')
+const sortBy = ref<TSortBy>(postsStore.meta.sortBy)
+const sortDirection = ref<TSortDirection>(postsStore.meta.sortDirection)
 
 watchDebounced(searchQuery, () => {
   fetchPosts()
 }, { debounce: 500 })
 
 onMounted(fetchPosts)
+
+function handleSortChange () {
+  fetchPosts()
+}
 
 function createPost (post: TPostPayload) {
   try {
@@ -106,7 +132,9 @@ function fetchPosts (page = 1) {
     postsStore.getPosts({
       limit: POSTS_LIMIT,
       offset: (page - 1) * POSTS_LIMIT,
-      search: searchQuery.value
+      search: searchQuery.value,
+      sortBy: sortBy.value,
+      sortDirection: sortDirection.value
     })
   } finally {
     loading.value = false

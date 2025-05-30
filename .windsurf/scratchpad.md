@@ -59,7 +59,7 @@ Currently, the PostsList component displays a list of posts with pagination func
 - [x] Task 3: Update API Service and Store
 - [x] Task 4: Integrate Search with Pagination
 - [x] Task 5: Add Loading State and Empty State
-- [ ] Task 6: Testing and Refinement
+- [x] Task 6: Testing and Refinement
 
 ## Current Status / Progress Tracking
 Implementation phase - Tasks 1-5 completed. Waiting for testing and refinement.
@@ -104,3 +104,74 @@ The current implementation assumes the backend API supports a `search` parameter
 
 ## Lessons
 No lessons learned yet as implementation has not begun.
+
+# Sorting Feature Implementation Plan for PostsList Component
+
+## Background and Motivation
+The application currently has a PostsList component that displays posts with search functionality. The user wants to enhance this component by adding sorting capabilities near the search input. The sorting options should include:
+- Title (A-Z and Z-A)
+- Created at (ascending and descending)
+- Comments count (ascending and descending)
+
+## Key Challenges and Analysis
+1. The API already supports sorting by `title`, `createdAt`, and `commentsCount` with directions `asc` and `desc` as seen in the schema.
+2. The posts store already has `sortBy` and `sortDirection` in the meta state.
+3. We need to add UI elements (selects) to control these sorting parameters.
+4. The sorting parameters need to be passed to the API when fetching posts.
+
+## High-level Task Breakdown
+
+1. **Add sorting state to the PostsList component**
+   - Create reactive variables for sortBy and sortDirection
+   - Initialize them with default values from the store
+   - Success criteria: Component has new reactive state variables for sorting
+
+2. **Create sorting UI elements**
+   - Add a select dropdown for sort field (Title, Created at, Comments count)
+   - Add a select dropdown for sort direction (Ascending, Descending)
+   - Position these elements near the search input
+   - Success criteria: UI elements are visible and properly styled
+
+3. **Connect sorting UI to state**
+   - Bind the select dropdowns to the state variables
+   - Implement handlers for when selections change
+   - Success criteria: Changing the dropdowns updates the component state
+
+4. **Update the fetchPosts function**
+   - Modify the function to include sorting parameters in the API call
+   - Success criteria: API calls include the correct sorting parameters
+
+5. **Test the implementation**
+   - Verify that changing sort options updates the displayed posts
+   - Success criteria: Posts are sorted according to the selected options
+
+## Project Status Board
+- [x] Add sorting state to the PostsList component
+- [x] Create sorting UI elements
+- [x] Connect sorting UI to state
+- [x] Update the fetchPosts function
+- [ ] Test the implementation
+
+## Current Status / Progress Tracking
+Implementation complete. The sorting functionality has been added to the PostsList component. Waiting for testing and validation.
+
+## Executor's Feedback or Assistance Requests
+I've implemented the sorting functionality for the PostsList component. Here's a summary of the changes made:
+
+1. **UI Elements**: Added two Element Plus select dropdowns near the search input:
+   - First dropdown for selecting the sort field (Title, Created at, Comments count)
+   - Second dropdown for selecting the sort direction (Ascending, Descending)
+
+2. **State Management**:
+   - Added `sortBy` and `sortDirection` reactive variables initialized with values from the store
+   - Created a `handleSortChange` function that triggers a refresh of the posts when sorting options change
+
+3. **API Integration**:
+   - Updated the `fetchPosts` function to include the sorting parameters in the API call
+   - The sorting parameters are now passed to the backend API through the store
+
+4. **Styling**:
+   - Added Element Plus select styles to the element-reset/index.scss file
+   - Arranged the sorting dropdowns in a responsive layout below the search input
+
+The implementation leverages the existing API capabilities for sorting as identified in the schema. The UI now allows users to sort posts by title, creation date, or comments count in either ascending or descending order.

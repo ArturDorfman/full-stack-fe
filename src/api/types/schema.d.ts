@@ -83,6 +83,8 @@ export interface paths {
           limit?: number;
           offset?: number;
           search?: string;
+          sortBy?: "title" | "createdAt" | "commentsCount";
+          sortDirection?: "asc" | "desc";
         };
       };
       responses: {
@@ -106,6 +108,10 @@ export interface paths {
                 limit: number;
                 offset: number;
                 page: number;
+                /** @enum {string} */
+                sortBy: "title" | "createdAt" | "commentsCount";
+                /** @enum {string} */
+                sortDirection: "asc" | "desc";
               };
             };
           };
