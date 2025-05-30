@@ -35,8 +35,8 @@
 <script lang="ts" setup>
 const props = defineProps<{
   modalTitle?: string
-  title?: TPost['title']
-  description?: TPost['description']
+  title?: TPostResp['title']
+  description?: TPostResp['description']
 }>()
 
 const emit = defineEmits<{

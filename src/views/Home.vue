@@ -4,7 +4,7 @@
       <h1 class="text-2xl font-semibold">Full-stack crash course</h1>
     </header>
 
-    <main class="flex flex-grow overflow-hidden">
+    <main class="flex flex-grow overflow-y-auto">
       <PostsList />
     </main>
   </div>

@@ -78,21 +78,36 @@ export interface paths {
   };
   "/api/posts/": {
     get: {
+      parameters: {
+        query?: {
+          limit?: number;
+          offset?: number;
+        };
+      };
       responses: {
         /** @description Default Response */
         200: {
           content: {
-            "application/json": ({
-                /** Format: uuid */
-                id: string;
-                title: string;
-                description?: string | null;
-                /** Format: date-time */
-                createdAt: string;
-                /** Format: date-time */
-                updatedAt: string;
-                commentsCount: number;
-              })[];
+            "application/json": {
+              posts: ({
+                  /** Format: uuid */
+                  id: string;
+                  title: string;
+                  description?: string | null;
+                  /** Format: date-time */
+                  createdAt: string;
+                  /** Format: date-time */
+                  updatedAt: string;
+                  commentsCount: number;
+                })[];
+              meta: {
+                total: number;
+                limit: number;
+                offset: number;
+                page: number;
+                totalPages: number;
+              };
+            };
           };
         };
       };

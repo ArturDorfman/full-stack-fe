@@ -2,10 +2,12 @@ import { postsService } from '@/services/posts.service'
 
 export const usePostsStore = defineStore('postsStore', () => {
   const posts = ref<TPost[]>([])
+  const meta = ref<TPostsMeta>({ total: 0, limit: 0, offset: 0, page: 0, totalPages: 0 })
 
-  async function getPosts () {
-    const data = await postsService.getPosts()
-    posts.value = data
+  async function getPosts (params: { limit: number; offset: number }) {
+    const data = await postsService.getPosts(params)
+    posts.value = data.posts
+    meta.value = data.meta
   }
 
   async function createPost (payload: TPostPayload) {
@@ -33,6 +35,7 @@ export const usePostsStore = defineStore('postsStore', () => {
 
   return {
     posts,
+    meta,
     getPosts,
     createPost,
     updatePostById,

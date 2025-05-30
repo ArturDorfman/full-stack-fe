@@ -1,2 +1,4 @@
 type TPostPayload = TRequestBody<'/api/posts/', 'post'>
-type TPost = TResponse<'/api/posts/', 'get'>[number]
+type TPostResp = TResponse<'/api/posts/', 'get'>
+type TPost = TPostResp['posts'][number]
+type TPostsMeta = TPostResp['meta']

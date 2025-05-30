@@ -1,19 +1,19 @@
 import { commentsService } from '@/services/comments.service'
 
 export const useCommentsStore = defineStore('commentsStore', () => {
-  const comments = ref(new Map<TPost['id'], TComment[]>())
+  const comments = ref(new Map<TPostResp['id'], TComment[]>())
 
-  async function createComment (postId: TPost['id'], payload: TCommentPayload) {
+  async function createComment (postId: TPostResp['id'], payload: TCommentPayload) {
     const comment = await commentsService.createComment(postId, payload)
     comments.value.set(postId, [...comments.value.get(postId) || [], comment])
   }
 
-  async function getComments (postId: TPost['id']) {
+  async function getComments (postId: TPostResp['id']) {
     const data = await commentsService.getComments(postId)
     comments.value.set(postId, data)
   }
 
-  async function updateCommentById (postId: TPost['id'], commentId: TComment['id'], text: string) {
+  async function updateCommentById (postId: TPostResp['id'], commentId: TComment['id'], text: string) {
     const data = await commentsService.updateComment(postId, commentId, { text })
 
     comments.value.set(postId, comments.value.get(postId)?.map(comment => {
@@ -24,7 +24,7 @@ export const useCommentsStore = defineStore('commentsStore', () => {
     }) || [])
   }
 
-  async function deleteCommentById (postId: TPost['id'], commentId: TComment['id']) {
+  async function deleteCommentById (postId: TPostResp['id'], commentId: TComment['id']) {
     // await commentsService.deleteComment(postId, commentId)
     comments.value.set(postId, comments.value.get(postId)?.filter(comment => comment.id !== commentId) || [])
     console.log('deleteCommentById', postId, commentId)

@@ -3,8 +3,8 @@ class PostsService {
     return useApiClient.post('/api/posts/', payload)
   }
 
-  getPosts () {
-    return useApiClient.get('/api/posts/')
+  getPosts (params: { limit: number; offset: number }) {
+    return useApiClient.get('/api/posts/', { params })
   }
 
   getPostById (postId: TPost['id']) {
