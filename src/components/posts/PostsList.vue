@@ -49,6 +49,16 @@
             <el-option label="Ascending (A-Z)" value="asc" />
             <el-option label="Descending (Z-A)" value="desc" />
           </el-select>
+
+          <el-input
+            v-model.number="minComments"
+            type="number"
+            :min="0"
+            :step="1"
+            placeholder="Min comments"
+            class="w-1/4"
+            @change="handleMinCommentsChange"
+          />
         </div>
       </div>
 
@@ -101,6 +111,7 @@ const loading = ref(false)
 const searchQuery = ref('')
 const sortBy = ref<TSortBy>(postsStore.meta.sortBy)
 const sortDirection = ref<TSortDirection>(postsStore.meta.sortDirection)
+const minComments = ref<number>(0)
 
 watchDebounced(searchQuery, () => {
   fetchPosts()
@@ -109,6 +120,10 @@ watchDebounced(searchQuery, () => {
 onMounted(fetchPosts)
 
 function handleSortChange () {
+  fetchPosts()
+}
+
+function handleMinCommentsChange () {
   fetchPosts()
 }
 
@@ -122,6 +137,7 @@ function createPost (post: TPostPayload) {
 
 function handleClearSearch () {
   searchQuery.value = ''
+  minComments.value = 0
   fetchPosts()
 }
 
@@ -134,7 +150,8 @@ function fetchPosts (page = 1) {
       offset: (page - 1) * POSTS_LIMIT,
       search: searchQuery.value,
       sortBy: sortBy.value,
-      sortDirection: sortDirection.value
+      sortDirection: sortDirection.value,
+      minComments: minComments.value
     })
   } finally {
     loading.value = false

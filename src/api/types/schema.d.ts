@@ -85,6 +85,7 @@ export interface paths {
           search?: string;
           sortBy?: "title" | "createdAt" | "commentsCount";
           sortDirection?: "asc" | "desc";
+          minComments?: number;
         };
       };
       responses: {
