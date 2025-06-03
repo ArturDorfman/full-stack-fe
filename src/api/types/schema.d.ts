@@ -81,7 +81,7 @@ export interface paths {
       parameters: {
         query?: {
           limit?: number;
-          offset?: number;
+          page?: number;
           search?: string;
           sortBy?: "title" | "createdAt" | "commentsCount";
           sortDirection?: "asc" | "desc";

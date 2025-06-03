@@ -147,7 +147,7 @@ function fetchPosts (page = 1) {
   try {
     postsStore.getPosts({
       limit: POSTS_LIMIT,
-      offset: (page - 1) * POSTS_LIMIT,
+      page,
       search: searchQuery.value,
       sortBy: sortBy.value,
       sortDirection: sortDirection.value,
